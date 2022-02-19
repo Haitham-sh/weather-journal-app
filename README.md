@@ -21,11 +21,11 @@ Third, click the generate button to see the result.
 
 ## Built With:
 
-1- NodeJS - The JavaScript runtime.
-2- Express - The web framework.
-3- JavaScript - The language used.
-4- HTML.
-5- CSS
+- NodeJS - The JavaScript runtime.
+- Express - The web framework.
+- JavaScript - The language used.
+- HTML.
+- CSS
 
 
 ## Development
