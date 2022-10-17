@@ -17,7 +17,7 @@ const cors = require('cors');
 app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
-const port = 8000;
+const port = "https://desolate-waters-81795.herokuapp.com/";
 // Spin up the server
 const server = app.listen(port, ()=>{console.log(`running on localhost:${port}`)});
 // GET route
