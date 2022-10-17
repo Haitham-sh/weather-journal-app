@@ -17,6 +17,13 @@ fetch("./json-files/countries.json")
 function myCountry() {
   var select = document.getElementById("country");
   var value = select.options[select.selectedIndex].value;
+  var x = document.getElementById("cities");
+  console.log(x.options)
+    if (x.options.length > 0) {
+      for (let i in x)
+      x.remove(i);
+        console.log(x.options.length)
+    }
   fetch("./json-files/city.json")
     .then((res) => res.json())
     .then((data) => {
@@ -32,7 +39,7 @@ function myCountry() {
         x.add(option);
       }
     })
-    .then()
+    // .then()
     .catch((err) => {
       console.log(err);
     });
