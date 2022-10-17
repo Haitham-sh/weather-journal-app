@@ -1,3 +1,51 @@
+fetch("./json-files/countries.json")
+  .then((res) => res.json())
+  .then((data) => {
+    for (let i in data) {
+      let item = data[i];
+      var x = document.getElementById("country");
+      var option = document.createElement("option");
+      option.text = item.name;
+      option.value = item.code
+      x.add(option);
+    }
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+
+function myCountry() {
+  var select = document.getElementById("country");
+  var value = select.options[select.selectedIndex].value;
+  fetch("./json-files/city.json")
+    .then((res) => res.json())
+    .then((data) => {
+      var cities = data.filter(el=>
+        el.country== value
+      )
+      for (let i in cities) {
+        let item = cities[i];
+        var x = document.getElementById("cities");
+        var option = document.createElement("option");
+        option.text = item.name;
+        option.value = item.id
+        x.add(option);
+      }
+    })
+    .then()
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
+let cityId
+
+function myCity() {
+  var select = document.getElementById("cities");
+  var value = select.options[select.selectedIndex].value;
+  return cityId= value
+}
+
 // Create a new date instance dynamically with JS
 let d = new Date();
 let month = new Array();
@@ -16,20 +64,24 @@ month[11] = "December";
 let newDate = month[d.getMonth()] + "." + d.getDate() + "." + d.getFullYear();
 
 /* Global Variables */
-const basicURL = "http://api.openweathermap.org/data/2.5/weather?zip=";
+const basicURL = "http://api.openweathermap.org/data/2.5/weather?id=";
 // Personal API Key for OpenWeatherMap API
 const apiKey = "&appid=041978f5d1cccac048452a949c36ce88&units=metric";
 // Event listener to add function to existing HTML DOM element
 document.getElementById("generate").addEventListener("click", clickAction);
 function clickAction() {
-  if (!zip.value) {
-    console.log("enter zip");
-    alert("your zip code is missing");
+  // if (!zip.value) {
+  //   console.log("enter zip");
+  //   alert("your zip code is missing");
+  // } else {
+  //   const zipCode = document.getElementById("zip").value;
+  if (cityId== undefined) {
+    console.log("select your country and city");
+    alert("select your country and city");
   } else {
-    const zipCode = document.getElementById("zip").value;
-    getInfo(basicURL, zipCode, apiKey)
-      .then((temp) => {
-        return needData(temp);
+    getInfo(basicURL, cityId, apiKey)
+      .then((info) => {
+        return needData(info);
       })
       .then((lastData) => {
         return updateUI(lastData);
@@ -38,20 +90,26 @@ function clickAction() {
 }
 
 /* Function to GET Web API Data*/
-const getInfo = async (basicURL, zipCode, apiKey) => {
-  const res = await fetch(basicURL + zipCode + apiKey);
+const getInfo = async (basicURL, cityId, apiKey) => {
+  const lang= "&lang=en";
+  const fetching= basicURL + cityId + apiKey + lang
+  // const fetching= "https://api.openweathermap.org/data/2.5/weather?id=358619" + apiKey + lang
+  const res = await fetch(fetching);
   try {
     const data = await res.json();
-    const temp = data.main.temp;
-    console.log(temp);
-    return temp;
+    console.log(data)
+    const city= data.name;
+    const temp= data.main.temp;
+    const info= [temp, city]
+    return info;
   } catch (error) {
     console.log("error", error);
   }
 };
 
 /* Function to POST data */
-const needData = async (temp) => {
+const needData = async (info) => {
+  console.log(info)
   const feeling = document.getElementById("feelings").value;
   try {
     const res2 = await fetch("/postinfo", {
@@ -62,8 +120,9 @@ const needData = async (temp) => {
       },
       body: JSON.stringify(
         (data2 = {
-          temp: temp,
-          newDate: newDate,
+          temp: info[0],
+          city: info[1],
+          newDate,
           feeling: feeling,
         })
       ),
@@ -85,6 +144,9 @@ const updateUI = async () => {
     document.getElementById(
       "temp"
     ).innerHTML = `temperature: ${lastData.temp} <sup>o</sup>C`;
+    document.getElementById(
+      "city"
+    ).innerHTML = `your city: ${lastData.city}`;
     document.getElementById(
       "content"
     ).innerHTML = `your feeling: ${lastData.feeling}`;

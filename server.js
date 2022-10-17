@@ -19,7 +19,7 @@ app.use(cors());
 app.use(express.static('website'));
 const port = 8000;
 // Spin up the server
-const server = app.listen(port, ()=>{console.log(`running on localhost: ${port}`)});
+const server = app.listen(port, ()=>{console.log(`running on localhost:${port}`)});
 // GET route
 app.get('/store',(req,res)=>{
 res.send(projectData)
@@ -28,6 +28,7 @@ console.log(projectData)
 // Post Route
 app.post('/postinfo',(req,res)=>{ 
 projectData.temp= req.body.temp,
+projectData.city= req.body.city,
 projectData.newDate= req.body.newDate,
 projectData.feeling= req.body.feeling,
 res.send()

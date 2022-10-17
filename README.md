@@ -14,7 +14,7 @@ Overview This project tells a user what is the temperature in his city and the d
 
 ## How To Use
 
-First, enter your city's **(USA)** zip code in the field provided for that and make sure it is correct.
+First, choose your country and your city in the field provided for that, and make sure it is correct.
 Second, enter your feeling about the weather in the field provided for it (optional).
 Third, click the generate button to see the result.
 

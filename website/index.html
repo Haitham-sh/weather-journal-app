@@ -14,15 +14,28 @@
       <div class="holder headline">
         <h1>Weather Journal App</h1>
       </div>
-      <div class="holder zip">
-        <label for="zip">Enter Zipcode here</label>
-        <input type="text" id="zip" placeholder="enter zip code here" />
+      <div class="holder country">
+        <label for="country">select your country</label>
+        <select id="country" size="1" onchange="myCountry()">
+          <option value="select your country"></option>
+        </select>
       </div>
+      <div class="holder city">
+        <label for="cities">select your city</label>
+        <select id="cities" size="1" onchange="myCity()">
+          <option value="select your city"></option>
+        </select>
+      </div>
+      <!-- <div class="holder zip">
+        <label for="zip">Enter Zipcode here</label>
+        <input type="text" value="10001" id="zip" placeholder="enter zip code here" />
+      </div> -->
       <div class="holder feel">
         <label for="feelings">How are you feeling today?</label>
         <textarea
           class="myInput"
           id="feelings"
+          aria-valuetext="good"
           placeholder="Enter your feelings here"
           rows="9"
           cols="40"
@@ -33,6 +46,7 @@
         <div class="title">Most Recent Entry</div>
         <div id="entryHolder">
           <div id="date"></div>
+          <div id="city"></div>
           <div id="temp"></div>
           <div id="content"></div>
         </div>
