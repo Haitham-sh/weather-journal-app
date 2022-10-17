@@ -18,6 +18,15 @@ app.use(cors());
 // Initialize the main project folder
 app.use(express.static('website'));
 const port = process.env.PORT || 8000;
+// https
+app.use(function (req, res, next){
+  if (req.headers['x-forwarded-proto'] === 'https') {
+    res.redirect('http://' + req.hostname + req.url);
+  } else {
+    next();
+  }
+});
+
 // Spin up the server
 const server = app.listen(port, ()=>{console.log(`running on localhost:${port}`)});
 // GET route

@@ -64,7 +64,7 @@ month[11] = "December";
 let newDate = month[d.getMonth()] + "." + d.getDate() + "." + d.getFullYear();
 
 /* Global Variables */
-const basicURL = "http://api.openweathermap.org/data/2.5/weather?id=";
+const basicURL = "https://api.openweathermap.org/data/2.5/weather?id=";
 // Personal API Key for OpenWeatherMap API
 const apiKey = "&appid=041978f5d1cccac048452a949c36ce88&units=metric";
 // Event listener to add function to existing HTML DOM element
