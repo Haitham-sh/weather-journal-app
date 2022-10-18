@@ -1,6 +1,11 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
+  margin: 0px;
   background: center url("./nature-g8427353e2_1920.jpg");
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background-size: cover;
 }
 
 #app {
@@ -10,14 +15,16 @@ body {
     "co res"
     "ci res"
     "feel res";
-  height: 97vh;
+  width: 95%;
+  height: 95vh;
+  margin: 2.5vh auto;
   background: rgba(235, 237, 241, 0.4);
-  color: #000000;
   justify-content: center;
   align-items: center;
   grid-gap: 1em;
   font-size: 20px;
   font-family: "Oswald", sans-serif;
+  padding-bottom: 20px;
 }
 
 /* .zip {
@@ -44,27 +51,26 @@ body {
   background: rgba(59, 74, 107, 0.4);
   grid-area: res;
   width: 25vw;
-  height: 97%;
+  height: 99%;
   border-radius: 5px;
 }
 
 #entryHolder {
   padding: 10px;
   color: #1216e9;
-  text-align: center;
 }
 
 #date,
+#city,
 #temp,
 #content {
-  margin: 20px auto;
+  margin: 10px;
 }
 
 .headline {
   height: 60px;
   margin: auto;
   grid-area: head;
-  font-size: xx-large;
 }
 .title {
   padding: 10px;
@@ -91,6 +97,11 @@ select {
   border-radius: 5px;
 }
 
+option {
+  width: 31vw;
+  overflow:hidden;
+}
+
 button {
   display: block;
   width: 31vw;
@@ -104,13 +115,18 @@ button {
   border-radius: 5px;
 }
 
+button:hover {
+  border: solid 1px #1216e9;
+  color: #ffffff;
+}
+
 h1 {
   font-size: 36px;
 }
 
 textarea {
   height: 15vh;
-  width: 29vw;
+  width: 31vw;
   background: #22b2da;
   color: #1216e9;
   font-size: 20px;

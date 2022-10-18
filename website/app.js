@@ -19,16 +19,18 @@ function myCountry() {
   var value = select.options[select.selectedIndex].value;
   var x = document.getElementById("cities");
   console.log(x.options)
-    if (x.options.length > 0) {
-      for (let i in x)
-      x.remove(i);
-        console.log(x.options.length)
-    }
+  if (x.options.length > 1) {
+    for (let i in x)
+      if (i > 0) {
+        x.remove(i);
+      }
+
+  }
   fetch("./json-files/city.json")
     .then((res) => res.json())
     .then((data) => {
-      var cities = data.filter(el=>
-        el.country== value
+      var cities = data.filter(el =>
+        el.country == value
       )
       for (let i in cities) {
         let item = cities[i];
@@ -50,7 +52,7 @@ let cityId
 function myCity() {
   var select = document.getElementById("cities");
   var value = select.options[select.selectedIndex].value;
-  return cityId= value
+  return cityId = value
 }
 
 // Create a new date instance dynamically with JS
@@ -82,7 +84,7 @@ function clickAction() {
   //   alert("your zip code is missing");
   // } else {
   //   const zipCode = document.getElementById("zip").value;
-  if (cityId== undefined) {
+  if (cityId == undefined) {
     console.log("select your country and city");
     alert("select your country and city");
   } else {
@@ -98,16 +100,16 @@ function clickAction() {
 
 /* Function to GET Web API Data*/
 const getInfo = async (basicURL, cityId, apiKey) => {
-  const lang= "&lang=en";
-  const fetching= basicURL + cityId + apiKey + lang
+  const lang = "&lang=en";
+  const fetching = basicURL + cityId + apiKey + lang
   // const fetching= "https://api.openweathermap.org/data/2.5/weather?id=358619" + apiKey + lang
   const res = await fetch(fetching);
   try {
     const data = await res.json();
     console.log(data)
-    const city= data.name;
-    const temp= data.main.temp;
-    const info= [temp, city]
+    const city = data.name;
+    const temp = data.main.temp;
+    const info = [temp, city]
     return info;
   } catch (error) {
     console.log("error", error);
@@ -147,16 +149,16 @@ const updateUI = async () => {
   try {
     const lastData = await req.json();
     console.log(lastData);
-    document.getElementById("date").innerHTML = `date: ${lastData.newDate}`;
+    document.getElementById("date").innerHTML = `<i style="color:#f8ac09" class="fa-regular fa-calendar-days"></i> <span style="color:#f8ac09">date:</span> ${lastData.newDate}`;
     document.getElementById(
       "temp"
-    ).innerHTML = `temperature: ${lastData.temp} <sup>o</sup>C`;
+    ).innerHTML = `<i style="color:#f8ac09" class="fa-solid fa-temperature-three-quarters"></i> <span style="color:#f8ac09">temperature:</span> ${lastData.temp} <sup>o</sup>C`;
     document.getElementById(
       "city"
-    ).innerHTML = `your city: ${lastData.city}`;
+    ).innerHTML = `<i style="color:#f8ac09" class="fa-solid fa-city"></i> <span style="color:#f8ac09">your city:</span> ${lastData.city}`;
     document.getElementById(
       "content"
-    ).innerHTML = `your feeling: ${lastData.feeling}`;
+    ).innerHTML = `<i style="color:#f8ac09" class="fa-solid fa-person-circle-question"></i> <span style="color:#f8ac09">your feeling:</span> ${lastData.feeling}`;
   } catch (error) {
     console.log("error", error);
   }
