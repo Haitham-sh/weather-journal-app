@@ -38,7 +38,12 @@ console.log(projectData)
 app.post('/postinfo',(req,res)=>{ 
 projectData.temp= req.body.temp,
 projectData.city= req.body.city,
+projectData.icon= req.body.icon,
 projectData.newDate= req.body.newDate,
 projectData.feeling= req.body.feeling,
+projectData.description= req.body.description,
+projectData.wind= req.body.wind,
+projectData.snow= req.body.snow,
+projectData.rain= req.body.rain,
 res.send()
 });

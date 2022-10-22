@@ -15,17 +15,10 @@ fetch("./json-files/countries.json")
   });
 
 function myCountry() {
-  var select = document.getElementById("country");
-  var value = select.options[select.selectedIndex].value;
-  var x = document.getElementById("cities");
-  console.log(x.options)
-  if (x.options.length > 1) {
-    for (let i in x)
-      if (i > 0) {
-        x.remove(i);
-      }
-
-  }
+  const select = document.getElementById("country");
+  const value = select.options[select.selectedIndex].value;
+  const x = document.getElementById("cities")
+  .innerHTML= `<option value="select your city"></option>`;
   fetch("./json-files/city.json")
     .then((res) => res.json())
     .then((data) => {
@@ -109,7 +102,12 @@ const getInfo = async (basicURL, cityId, apiKey) => {
     console.log(data)
     const city = data.name;
     const temp = data.main.temp;
-    const info = [temp, city]
+    const icon = data.weather[0].icon
+    const description = data.weather[0].description
+    const wind = data.wind ? data.wind.speed : 0
+    const snow = data.snow ? data.snow["1h"] : 0
+    const rain = data.rain ? data.rain["1h"] : 0
+    const info = [temp, city, icon, description, wind, snow, rain]
     return info;
   } catch (error) {
     console.log("error", error);
@@ -131,6 +129,11 @@ const needData = async (info) => {
         (data2 = {
           temp: info[0],
           city: info[1],
+          icon: info[2],
+          description: info[3],
+          wind: info[4],
+          snow: info[5],
+          rain: info[6],
           newDate,
           feeling: feeling,
         })
@@ -149,16 +152,31 @@ const updateUI = async () => {
   try {
     const lastData = await req.json();
     console.log(lastData);
-    document.getElementById("date").innerHTML = `<i style="color:#f8ac09" class="fa-regular fa-calendar-days"></i> <span style="color:#f8ac09">date:</span> ${lastData.newDate}`;
+    document.getElementById("date").innerHTML = `<i style="color:#ffeb3b" class="fa-regular fa-calendar-days"></i> <span style="color:#ffeb3b">date:</span> ${lastData.newDate}`;
     document.getElementById(
       "temp"
-    ).innerHTML = `<i style="color:#f8ac09" class="fa-solid fa-temperature-three-quarters"></i> <span style="color:#f8ac09">temperature:</span> ${lastData.temp} <sup>o</sup>C`;
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-temperature-three-quarters"></i> <span style="color:#ffeb3b"></span> ${lastData.temp} <sup>o</sup>C`;
     document.getElementById(
       "city"
-    ).innerHTML = `<i style="color:#f8ac09" class="fa-solid fa-city"></i> <span style="color:#f8ac09">your city:</span> ${lastData.city}`;
+    ).innerHTML = `<img src="http://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px /> ${lastData.city}`;
     document.getElementById(
       "content"
-    ).innerHTML = `<i style="color:#f8ac09" class="fa-solid fa-person-circle-question"></i> <span style="color:#f8ac09">your feeling:</span> ${lastData.feeling}`;
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-person-circle-question"></i> <span style="color:#ffeb3b">your feeling:</span> ${lastData.feeling}`;
+    // document.getElementById(
+    //   "icon"
+    // ).innerHTML = `<img src="http://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px />`;
+    document.getElementById(
+      "description"
+    ).innerHTML = `${lastData.description}`;
+    document.getElementById(
+      "wind"
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-wind"></i> <span style="color:#ffeb3b">wind:</span> ${lastData.wind} km/h`;
+    document.getElementById(
+      "rain"
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-cloud-showers-heavy"></i> <span style="color:#ffeb3b">rain:</span> ${lastData.rain} /1h`;
+    document.getElementById(
+      "snow"
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-snowplow"></i> <span style="color:#ffeb3b">snow:</span> ${lastData.snow} /1h`;
   } catch (error) {
     console.log("error", error);
   }
