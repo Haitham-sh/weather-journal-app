@@ -6,6 +6,7 @@ body {
   margin: 0px;
   background: center url("./nature-g8427353e2_1920.jpg");
   background-size: cover;
+  position: relative;
 }
 
 #app {
@@ -200,6 +201,32 @@ button:focus {
   /* Microsoft Edge */
   color: #f0d43a;
   font-family: "Oswald", sans-serif;
+}
+
+#loading {
+  position: absolute;
+  top: 45%;
+  left: 45%;
+  width: 5rem;
+  height: 5rem;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #f8ac09;
+  border-radius: 100%;
+  margin: auto;
+  visibility: hidden;
+  animation: spin 1s infinite linear;
+}
+#loading.display {
+  visibility: visible;
+}
+@keyframes spin {
+  from {
+      transform: rotate(0deg);
+      
+  }
+  to {
+      transform: rotate(360deg);
+  }
 }
 
 

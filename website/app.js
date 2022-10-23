@@ -14,7 +14,21 @@ fetch("./json-files/countries.json")
     console.log(err);
   });
 
+  // selecting loading div
+const loader = document.querySelector("#loading");
+
+  // showing loading
+function displayLoading() {
+  loader.classList.add("display");
+}
+
+// hiding loading 
+function hideLoading() {
+  loader.classList.remove("display");
+}
+
 function myCountry() {
+  displayLoading()
   const select = document.getElementById("country");
   const value = select.options[select.selectedIndex].value;
   const x = document.getElementById("cities")
@@ -33,6 +47,7 @@ function myCountry() {
         option.value = item.id
         x.add(option);
       }
+      hideLoading()
     })
     // .then()
     .catch((err) => {
@@ -98,6 +113,7 @@ const getInfo = async (basicURL, cityId, apiKey) => {
   // const fetching= "https://api.openweathermap.org/data/2.5/weather?id=358619" + apiKey + lang
   const res = await fetch(fetching);
   try {
+    displayLoading();
     const data = await res.json();
     // console.log(data)
     const city = data.name;
@@ -177,6 +193,7 @@ const updateUI = async () => {
     document.getElementById(
       "snow"
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-snowplow"></i> <span style="color:#ffeb3b">snow:</span> ${lastData.snow} /1h`;
+    hideLoading();
   } catch (error) {
     console.log("error", error);
   }
