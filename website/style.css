@@ -11,7 +11,7 @@ body {
 
 #app {
   display: grid;
-  grid-template-areas: 
+  grid-template-areas:
     "head head"
     "co res"
     "ci res"
@@ -87,7 +87,7 @@ body {
 
 #city img {
   position: absolute;
-  top:0px;
+  top: 0px;
   left: -15px;
 }
 
@@ -99,16 +99,10 @@ body {
 }
 
 #temp,
-#description
- {
+#description {
   font-size: 2em;
   text-align: center;
 }
-
-/* #wind,
-#rain {
-  display: inline-block;
-} */
 
 .headline {
   height: 60px;
@@ -142,7 +136,7 @@ select {
 
 option {
   width: 31vw;
-  overflow:hidden;
+  overflow: hidden;
 }
 
 button {
@@ -177,6 +171,7 @@ textarea {
   padding-left: 5%;
   border-radius: 5px;
 }
+
 /* Reset style for HTML element on active to have no border*/
 input:focus,
 select:focus,
@@ -184,6 +179,7 @@ textarea:focus,
 button:focus {
   outline: none;
 }
+
 /* Style for Placeholder Text*/
 ::placeholder {
   /* Firefox, Chrome, Opera */
@@ -221,12 +217,9 @@ button:focus {
 }
 @keyframes spin {
   from {
-      transform: rotate(0deg);
-      
+    transform: rotate(0deg);
   }
   to {
-      transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
-
-

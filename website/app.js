@@ -168,13 +168,13 @@ const updateUI = async () => {
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-temperature-three-quarters"></i> <span style="color:#ffeb3b"></span> ${lastData.temp} <sup>o</sup>C`;
     document.getElementById(
       "city"
-    ).innerHTML = `<img src="https://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px /> ${lastData.city}`;
+    ).innerHTML = `${lastData.city}`;
     document.getElementById(
       "content"
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-person-circle-question"></i> <span style="color:#ffeb3b">your feeling:</span> ${lastData.feeling}`;
     document.getElementById(
       "description"
-    ).innerHTML = `${lastData.description}`;
+    ).innerHTML = `<img src="https://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px /> ${lastData.description}`;
     document.getElementById(
       "wind"
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-wind"></i> <span style="color:#ffeb3b">wind:</span> ${lastData.wind} km/h`;
