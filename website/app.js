@@ -49,7 +49,6 @@ function myCountry() {
       }
       hideLoading()
     })
-    // .then()
     .catch((err) => {
       console.log(err);
     });
@@ -110,12 +109,10 @@ function clickAction() {
 const getInfo = async (basicURL, cityId, apiKey) => {
   const lang = "&lang=en";
   const fetching = basicURL + cityId + apiKey + lang
-  // const fetching= "https://api.openweathermap.org/data/2.5/weather?id=358619" + apiKey + lang
   const res = await fetch(fetching);
   try {
     displayLoading();
     const data = await res.json();
-    // console.log(data)
     const city = data.name;
     const temp = data.main.temp;
     const icon = data.weather[0].icon
@@ -132,7 +129,6 @@ const getInfo = async (basicURL, cityId, apiKey) => {
 
 /* Function to POST data */
 const needData = async (info) => {
-  // console.log(info)
   const feeling = document.getElementById("feelings").value;
   try {
     const res2 = await fetch("/postinfo", {
@@ -155,7 +151,6 @@ const needData = async (info) => {
         })
       ),
     });
-    // console.log(data2);
     return data2;
   } catch (error) {
     console.log("error", error);
@@ -167,7 +162,6 @@ const updateUI = async () => {
   const req = await fetch("/store");
   try {
     const lastData = await req.json();
-    // console.log(lastData);
     document.getElementById("date").innerHTML = `<i style="color:#ffeb3b" class="fa-regular fa-calendar-days"></i> <span style="color:#ffeb3b">date:</span> ${lastData.newDate}`;
     document.getElementById(
       "temp"
@@ -178,9 +172,6 @@ const updateUI = async () => {
     document.getElementById(
       "content"
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-person-circle-question"></i> <span style="color:#ffeb3b">your feeling:</span> ${lastData.feeling}`;
-    // document.getElementById(
-    //   "icon"
-    // ).innerHTML = `<img src="https://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px />`;
     document.getElementById(
       "description"
     ).innerHTML = `${lastData.description}`;
