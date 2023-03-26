@@ -165,16 +165,16 @@ const updateUI = async () => {
     document.getElementById("date").innerHTML = `<i style="color:#ffeb3b" class="fa-regular fa-calendar-days"></i> <span style="color:#ffeb3b">date:</span> ${lastData.newDate}`;
     document.getElementById(
       "temp"
-    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-temperature-three-quarters"></i> <span style="color:#ffeb3b"></span> ${lastData.temp} <sup>o</sup>C`;
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-temperature-three-quarters"></i>${lastData.temp} <sup>o</sup>C`;
     document.getElementById(
       "city"
-    ).innerHTML = `${lastData.city}`;
+    ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-location-dot"></i> ${lastData.city}`;
     document.getElementById(
       "content"
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-person-circle-question"></i> <span style="color:#ffeb3b">your feeling:</span> ${lastData.feeling}`;
     document.getElementById(
       "description"
-    ).innerHTML = `<img src="https://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px /> ${lastData.description}`;
+    ).innerHTML = `<img src="https://openweathermap.org/img/wn/${lastData.icon}@2x.png" width=50px height=60px /> <span>${lastData.description}</span>`;
     document.getElementById(
       "wind"
     ).innerHTML = `<i style="color:#ffeb3b" class="fa-solid fa-wind"></i> <span style="color:#ffeb3b">wind:</span> ${lastData.wind} km/h`;
